@@ -5,8 +5,15 @@ import path from "path";
 import Page from "../components/Page";
 import { contentFilePaths, CONTENTS_PATH } from "../utils/mdxUtils";
 
-export default ({ source, frontMatter, currentUrl }) => {
-  return <Page source={source} frontMatter={frontMatter} currentUrl={currentUrl} />;
+export default ({ source, frontMatter, i18n, currentUrl }) => {
+  return (
+    <Page
+      source={source}
+      frontMatter={frontMatter}
+      i18n={i18n}
+      currentUrl={currentUrl}
+    />
+  );
 };
 
 export const getStaticProps = async ({ params }) => {
@@ -26,10 +33,13 @@ export const getStaticProps = async ({ params }) => {
     scope: data,
   });
 
+  const { i18n } = await import(`../locales/${process.env.LANG}.js`);
+
   return {
     props: {
       source: mdxSource,
       frontMatter: data,
+      i18n: i18n,
       currentUrl: params.slug || null,
     },
   };
@@ -41,7 +51,9 @@ export const getStaticPaths = async () => {
       params: { slug: [] },
     },
   ].concat(
-    contentFilePaths.map((path) => path.replace(/\.mdx?$/, "")).map((slug) => ({ params: { slug: slug.split("/") } }))
+    contentFilePaths
+      .map((path) => path.replace(/\.mdx?$/, ""))
+      .map((slug) => ({ params: { slug: slug.split("/") } }))
   );
   return {
     paths,

@@ -9,6 +9,8 @@ Starter for CMS-less sites MDX powered content.
 * simple url composition and duplicities control (via filesystem limitations)
 * content versioning (via Git)
 * multilanguage support (suitable for multiple single language builds strategy _(samepage.com, samepage.cz, samepage.de, etc...)_)
+* designed for `next export`
+* flat component structure
 
 ## Dev setup
 
@@ -19,10 +21,27 @@ Prerequisites: `yarn 1+`, `node 12+`
 3) Run `yarn dev`
 4) Happy developing
 
-## Content editing notes
+## How to use
 
-* For adding a new page simply create new .mdx file in `contents/{{lng}}/` folder
-* Menu is structure independent, defined in i18n
+### Adding new page
+
+Simply add new .mdx file into `content/{{locale}}/` folder. _(or copy similar existing page to speed you up)_
+
+### Adding new content component
+
+1) Create new component in `components/` folder
+2) Register dynamic import of your component into the `Page` component
+3) Use whenever you want
+
+### Edit menu (or any language dependent static text)
+
+Edit `locales/{{locale}}.js` file
+
+### Add new language
+
+1) mkdir `contents/{{newLanguage}}/` _(content structure is totally independent on other languages)_
+2) create locales file `locales/{{newLanguage}}.js` _(copy existing saves time)_
+3) Now you can use `{{newLanguage}}` in `.env` to build new language website
 
 ## Publish
 
@@ -33,6 +52,5 @@ Prerequisites: `yarn 1+`, `node 12+`
 
 ## Known issues/TODO
 
-* i18n own minimalistic solution
 * styled components
 * sustainable demo

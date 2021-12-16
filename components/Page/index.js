@@ -7,6 +7,7 @@ import LayoutDefault from "../LayoutDefault";
 import { NextSeo } from "next-seo";
 
 import FrontMatterProvider from "../../contexts/frontMatterContext";
+import I18nProvider from "../../contexts/i18nContext";
 
 const components = {
   Background: dynamic(() => import("../Background")),
@@ -23,15 +24,22 @@ const layouts = {
   //add custom layouts here
 };
 
-export default function Layout({ source, frontMatter, currentUrl, children }) {
-  const ContentLayout = layouts[frontMatter?.layout ? frontMatter.layout : "default"];
+export default function Page({
+  source,
+  frontMatter,
+  i18n,
+  currentUrl,
+  children,
+}) {
+  const ContentLayout =
+    layouts[frontMatter?.layout ? frontMatter.layout : "default"];
   //default SEO title, desctiption, share image
   const meta = {
-    title: frontMatter.title ? frontMatter.title : "TITLE",
-    description: frontMatter.description ? frontMatter.description : "DESCRIPTION",
-    image: frontMatter.image
-      ? frontMatter.image
-      : "OGIMAGE",
+    title: frontMatter.title ? frontMatter.title : i18n.defaultTitle,
+    description: frontMatter.description
+      ? frontMatter.description
+      : i18n.defaultDescription,
+    image: frontMatter.image ? frontMatter.image : i18n.defaultOgImage,
   };
 
   return (
@@ -51,13 +59,19 @@ export default function Layout({ source, frontMatter, currentUrl, children }) {
           ],
         }}
       />
-      <Header />
-      <FrontMatterProvider frontMatter={frontMatter}>
-        <ContentLayout currentUrl={currentUrl}>
-          {children ? children : <MDXRemote {...source} components={components} />}
-        </ContentLayout>
-      </FrontMatterProvider>
-      <Footer />
+      <I18nProvider i18n={i18n}>
+        <Header />
+        <FrontMatterProvider frontMatter={frontMatter}>
+          <ContentLayout currentUrl={currentUrl}>
+            {children ? (
+              children
+            ) : (
+              <MDXRemote {...source} components={components} />
+            )}
+          </ContentLayout>
+        </FrontMatterProvider>
+        <Footer />
+      </I18nProvider>
     </>
   );
 }
