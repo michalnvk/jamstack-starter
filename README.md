@@ -19,11 +19,17 @@ Prerequisites: `yarn 1+`, `node 12+`
 3) Run `yarn dev`
 4) Happy developing
 
+## Content editing notes
+
+* For adding a new page simply create new .mdx file in `contents/{{lng}}/` folder
+* Menu is structure independent, defined in i18n
+
 ## Publish
 
-1) `yarn export`
-2) Copy contents of `/out/` folder to desired CDN location or litterally everywhere acccesible via Internet (potato powered raspberry pi should be fine too)
-3) Profit!
+1) set proper .env locale for desired build
+2) `yarn export`
+3) Copy contents of `/out/` folder to desired CDN location or litterally everywhere acccesible via Internet (potato powered raspberry pi should be fine too)
+4) Profit!
 
 ## Known issues/TODO
 
