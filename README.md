@@ -1,6 +1,6 @@
 # Multilanguage MDX JAMStack
 
-* Based on [https://github.com/vercel/next.js/tree/canary/examples/with-mdx-remote](with-mdx-remote example)*
+_Based on https://github.com/vercel/next.js/tree/canary/examples/with-mdx-remote_
 
 Starter for CMS-less sites MDX powered content.
 
