@@ -5,7 +5,7 @@ import path from "path";
 import Page from "../components/Page";
 import { contentFilePaths, CONTENTS_PATH } from "../utils/mdxUtils";
 
-export default ({ source, frontMatter, i18n, currentUrl }) => {
+const Slug = ({ source, frontMatter, i18n, currentUrl }) => {
   return (
     <Page
       source={source}
@@ -15,6 +15,7 @@ export default ({ source, frontMatter, i18n, currentUrl }) => {
     />
   );
 };
+export default Slug;
 
 export const getStaticProps = async ({ params }) => {
   const curPath = params?.slug ? params.slug : ["index"];
