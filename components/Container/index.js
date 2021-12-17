@@ -1,9 +1,23 @@
-import breakpoints from "../../styles/breakpoints";
+import styled from "styled-components";
 
-export default function Container({ type, className, children }) {
+const Container = ({ narrow, center, children }) => {
   return (
-    <>
-      <div className={`${type ? type : ""}${className ? " " + className : ""}`}>{children}</div>
-    </>
+    <StyledContainer narrow={narrow} center={center}>
+      {children}
+    </StyledContainer>
   );
-}
+};
+export default Container;
+
+const StyledContainer = styled.div`
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+  max-width: ${(props) =>
+    props.narrow ? "var(--content-narrow-width)" : "var(--content-max-width)"};
+
+  ${(props) =>
+    props.center &&
+    `
+      text-align: center;
+  `}
+`;

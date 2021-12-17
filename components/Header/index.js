@@ -1,28 +1,34 @@
 import Link from "next/link";
+import Container from "../Container";
+
 import styled from "styled-components";
+
 import { useI18n } from "../../contexts/i18nContext";
 
-export default function Header() {
+const Header = () => {
   const i18n = useI18n();
 
   return (
-    <StyledHeader>
-      <span>Logo</span>
+    <Container>
+      <StyledHeader>
+        <span>Logo</span>
 
-      <nav>
-        <ul>
-          {i18n.topmenu.map((menuItem, index) => (
-            <li key={index}>
-              <Link href={menuItem.url}>
-                <a>{menuItem.name}</a>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </StyledHeader>
+        <nav>
+          <ul>
+            {i18n.topmenu.map((menuItem, index) => (
+              <li key={index}>
+                <Link href={menuItem.url}>
+                  <a>{menuItem.name}</a>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </StyledHeader>
+    </Container>
   );
-}
+};
+export default Header;
 
 const StyledHeader = styled.header`
   display: flex;

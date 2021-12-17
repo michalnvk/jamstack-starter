@@ -10,7 +10,7 @@ Starter for CMS-less sites MDX powered content.
 * content versioning (via Git)
 * multilanguage support (suitable for multiple single language builds strategy _(samepage.com, samepage.cz, samepage.de, etc...)_)
 * designed for `next export`
-* flat component structure
+* flat component structure, styled components, CSS custom properties
 
 ## Dev setup
 
@@ -52,5 +52,4 @@ Edit `locales/{{locale}}.js` file
 
 ## Known issues/TODO
 
-* styled components
 * sustainable demo
